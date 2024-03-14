@@ -3,7 +3,7 @@ This project creates a (forwarder) proxy dll rust template.
 
 # Build 
 ```
-cargo build --target=i686-pc-windows-msvc --release
+cargo build --release
 ```
 
 # Usage
