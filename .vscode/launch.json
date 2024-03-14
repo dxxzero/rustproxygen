@@ -19,7 +19,7 @@
                     "kind": "bin"
                 }
             },
-            "args": ["C:\\temp\\test_dll.dll"],
+            "args": ["C:\\temp\\twain_32.dll"],
             "cwd": "${workspaceFolder}"
         },
         {

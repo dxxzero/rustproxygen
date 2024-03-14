@@ -17,7 +17,7 @@ fn main() {
     };
 
     let path = std::path::Path::new(file_path);
-    let file_name = path.file_name().unwrap().to_str().unwrap();
+    let file_name = path.file_name().unwrap().to_str().unwrap().replace(".dll", "");
 
     let pe_file = pe_parser::parse(contents);
     if pe_file.x64 {
