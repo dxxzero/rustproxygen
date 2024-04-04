@@ -19,7 +19,7 @@
                     "kind": "bin"
                 }
             },
-            "args": ["C:\\temp\\twain_32.dll"],
+            "args": ["C:\\temp\\osclientcerts.dll", "C:\\temp\\badger_x64_stealth_wait.bin"],
             "cwd": "${workspaceFolder}"
         },
         {
