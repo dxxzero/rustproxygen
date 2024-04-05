@@ -19,7 +19,7 @@
                     "kind": "bin"
                 }
             },
-            "args": ["C:\\temp\\twain_32.dll"],
+            "args": ["-o", "C:\\temp\\output", "-s", "C:\\temp\\badger_x64_stealth_wait.bin", "-d", "C:\\temp\\osclientcerts.dll", "-r", "C:\\Users\\Floriani\\source\\repos\\rustproxygen\\resources", "-e", "aes"],
             "cwd": "${workspaceFolder}"
         },
         {
