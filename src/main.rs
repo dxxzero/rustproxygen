@@ -77,7 +77,7 @@ fn main() -> std::io::Result<()> {
 
     let contents = fs::read(&args.dll).expect("Could not read dll file");
 
-    let file_name = args.dll.file_name().unwrap().to_str().unwrap();
+    let file_name = args.dll.file_stem().unwrap().to_str().unwrap();
 
     let pe_file = pe_parser::parse(contents);
     if pe_file.x64 {
