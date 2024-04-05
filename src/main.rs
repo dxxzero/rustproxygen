@@ -119,7 +119,8 @@ fn main() -> std::io::Result<()> {
     let mut content_shellcode_stub = Default::default();
     if shellcode.len() > 0 {
         let enc_algo = if args.encryption.is_some() {
-            if args.encryption.unwrap() == "aes" {
+            if args.encryption.unwrap().to_lowercase() == "aes" {
+                println!("Using AES encryption");
                 resource_path.push("aes.rs");
                 let tmp_enc_algo = fs::read_to_string(&resource_path).expect("Could not read aes.rs");
                 resource_path.pop();

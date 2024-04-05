@@ -8,15 +8,27 @@ cargo build --release
 
 # Usage
 ```
-rustproxygen.exe <Path/To/DllFile>
+Usage: rustproxygen.exe [OPTIONS] --dll <DLL>
+
+Options:
+  -d, --dll <Dll Path>
+  -s, --shellcode <Shellcode Path>
+  -o, --output <Output Directory>
+  -r, --resources <Resources Directory>
+  -e, --encryption <AES>
+  -h, --help                     Print help
+  -V, --version                  Print version
 ```
-Make sure you have copied the export.rs and template.rs into the same location as the rustproxygen.exe file.
+
 
 # Example
 ```
-rustproxygen.exe C:\temp\test_dll.dll
-    Proxying C:\temp\test_dll.dll
-    Parsed an x86 PE file
-    Found 3 exported functions
-    Wrote proxy dll template to .\proxy.rs
+rustproxygen.exe -o C:\temp\output -s C:\temp\shellcode.bin -d C:\temp\test.dll -r C:\temp\resources -e AES
+	Proxying "C:\\temp\\test.dll"
+	Embedding shellcode "C:\\temp\\shellcode.bin"
+	Parsed an x64 PE file
+	Found 2 exported functions
+	Using AES encryption
+	Wrote shellcode to "C:\\temp\\output\\shellcode.rs"
+	Wrote proxy dll template to "C:\\temp\\output\\proxy.rs"
 ```
